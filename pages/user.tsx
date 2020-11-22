@@ -1,6 +1,4 @@
 import React from "react";
-import axios from "axios";
-import { useRouter } from "next/dist/client/router";
 
 type UsersType = {
   address: {
@@ -31,12 +29,13 @@ interface Props {
 }
 
 function User({ users }: Props) {
+  // getStaticProps에서 return한 users
   console.log(users);
   return (
     <>
       <div>유저의 정보</div>
       <ul>
-        {users.map((user: UsersType) => (
+        {users.slice(0, 3).map((user: UsersType) => (
           <li key={user.id}>{user.name}</li>
         ))}
       </ul>
@@ -44,10 +43,9 @@ function User({ users }: Props) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps() {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
   const users = await res.json();
-  console.log("res: ", res);
   return {
     props: { users },
   };
