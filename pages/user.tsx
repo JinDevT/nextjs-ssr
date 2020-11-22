@@ -1,4 +1,5 @@
 import React from "react";
+import { GetServerSideProps } from "next";
 
 type UsersType = {
   address: {
@@ -29,7 +30,7 @@ interface Props {
 }
 
 function User({ users }: Props) {
-  // getStaticProps에서 return한 users
+  // getServerSideProps에서 return한 users
   console.log(users);
   return (
     <>
@@ -43,11 +44,11 @@ function User({ users }: Props) {
   );
 }
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
   const users = await res.json();
   return {
     props: { users },
   };
-}
+};
 export default User;
