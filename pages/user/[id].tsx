@@ -1,8 +1,26 @@
 import React from "react";
 import { GetServerSideProps } from "next";
 
-function User() {
-  return <div>다이나믹 라우팅</div>;
+import { UserType } from "../../@type/user";
+
+interface Props {
+  user: UserType;
+}
+function User({ user }: Props) {
+  return (
+    <>
+      <h1>Dynamic routing</h1>
+      <br />
+      <div>
+        <p>
+          {"이름:"} {user.name}
+        </p>
+        <p>
+          {"주소:"} {user.address.city}
+        </p>
+      </div>
+    </>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
