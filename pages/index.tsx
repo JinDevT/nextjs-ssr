@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Layout from "../components/Layout";
 import styled from "styled-components";
 
 // pages folder 안에 파일들을 코드 스플리팅된 코드로 만들어진다.
@@ -7,16 +8,18 @@ import styled from "styled-components";
 
 const Home = () => {
   return (
-    <HomeBlock>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
+      <HomeBlock>
+        <Head>
+          <title>Create Next App</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <Mains>
-        <h1>Next.js + Typesctipt</h1>
-      </Mains>
-    </HomeBlock>
+        <Mains>
+          <h1>Next.js + Typesctipt</h1>
+        </Mains>
+      </HomeBlock>
+    </Layout>
   );
 };
 
