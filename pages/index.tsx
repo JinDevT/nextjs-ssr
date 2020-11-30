@@ -1,5 +1,9 @@
+import React from "react";
 import Head from "next/head";
 import styled from "styled-components";
+
+// pages folder 안에 파일들을 코드 스플리팅된 코드로 만들어진다.
+// pages 는 무조건 pages
 
 const Home = () => {
   return (
