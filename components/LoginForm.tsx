@@ -2,6 +2,7 @@ import React, { useState, useCallback } from "react";
 import Link from "next/link";
 
 import { Form, Input, Button } from "antd";
+import styled from "styled-components";
 
 function LoginForm() {
 	const [id, setId] = useState("");
@@ -29,7 +30,9 @@ function LoginForm() {
 			<div>
 				<Input name="user-password" value={password} onChange={onChangePassword} required />
 			</div>
-			<div>
+
+			{/* 객체로 스타일을 주면 리렌더링 됨 {} === {} -> false */}
+			<ButtonWrapper>
 				<Button type="primary" htmlType="submit" loading={false}>
 					로그인
 				</Button>
@@ -38,9 +41,13 @@ function LoginForm() {
 						<Button>회원가입</Button>
 					</a>
 				</Link>
-			</div>
+			</ButtonWrapper>
 		</Form>
 	);
 }
+
+const ButtonWrapper = styled.div`
+	margin-top: 10px;
+`;
 
 export default LoginForm;

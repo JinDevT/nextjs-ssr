@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { Menu, Input, Row, Col } from "antd";
 
 import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
+
+import { Menu, Input, Row, Col } from "antd";
+import styled from "styled-components";
 interface Props {
 	children: React.ReactNode;
 }
@@ -12,6 +14,11 @@ interface Props {
 // 반응형: 가로 -> 세로, 모바일 -> 태블릿 -> 데스크탑 순서로 하는게 편함.
 function Layout({ children }: Props) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	// 리렌더링 : 리렌더링은 return 부분이 리렌더링 되는게 아니라
+	// 이전 컴포넌트 virtual dom과 지금 컴포넌트 virtual dom과 비교해서 달라진 부분만 다시 리레더링 된다
+	// 어쩔 수 없이 인라인으로 넣어야할 때는 useMemo를 사용하자.
+	const style = useMemo(() => ({ marginTop: 10 }), []);
 	return (
 		<div>
 			<Menu mode="horizontal">
@@ -26,7 +33,7 @@ function Layout({ children }: Props) {
 					</Link>
 				</Menu.Item>
 				<Menu.Item>
-					<Input.Search style={{ verticalAlign: "middle" }} />
+					<Input.Search style={style} enterButton />
 				</Menu.Item>
 				<Menu.Item>
 					<Link href="/signup">
@@ -53,5 +60,9 @@ function Layout({ children }: Props) {
 		</div>
 	);
 }
+
+const SearchInput = styled(Input.Search)`
+	vertical-align: middle;
+`;
 
 export default Layout;
