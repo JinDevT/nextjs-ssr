@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, Input, Row, Col } from "antd";
 
+import UserProfile from "./UserProfile";
+import LoginForm from "./LoginForm";
 interface Props {
 	children: React.ReactNode;
 }
@@ -9,6 +11,7 @@ interface Props {
 // 일부애들이 공통인 애들
 // 반응형: 가로 -> 세로, 모바일 -> 태블릿 -> 데스크탑 순서로 하는게 편함.
 function Layout({ children }: Props) {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	return (
 		<div>
 			<Menu mode="horizontal">
@@ -35,7 +38,7 @@ function Layout({ children }: Props) {
 			<Row gutter={8}>
 				{/* 24등분 한다고 생각하면 됨. 24로 나눈이유: 등분하기 좋은 숫자. */}
 				<Col xs={24} md={6}>
-					왼쪽메뉴
+					{isLoggedIn ? <UserProfile /> : <LoginForm />}
 				</Col>
 				<Col xs={24} md={12}>
 					{children}
