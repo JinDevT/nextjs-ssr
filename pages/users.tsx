@@ -22,7 +22,7 @@ function Users({ users }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
   const users = await res.json();
   return {
