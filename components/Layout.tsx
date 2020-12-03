@@ -45,7 +45,7 @@ function Layout({ children }: Props) {
       <Row gutter={8}>
         {/* 24등분 한다고 생각하면 됨. 24로 나눈이유: 등분하기 좋은 숫자. */}
         <Col xs={24} md={6}>
-          {isLoggedIn ? <UserProfile /> : <LoginForm />}
+          {isLoggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn} /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />}
         </Col>
         <Col xs={24} md={12}>
           {children}

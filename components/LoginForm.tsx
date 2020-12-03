@@ -4,7 +4,10 @@ import Link from "next/link";
 import { Form, Input, Button } from "antd";
 import styled from "styled-components";
 
-function LoginForm() {
+interface Props {
+  setIsLoggedIn: any;
+}
+function LoginForm({ setIsLoggedIn }: Props) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,8 +19,12 @@ function LoginForm() {
     setPassword(e.target.value);
   }, []);
 
+  const onSubmitForm = useCallback(() => {
+    console.log(id, password);
+    setIsLoggedIn(true);
+  }, [id, password]);
   return (
-    <Form>
+    <FormWrapper onFinish={onSubmitForm}>
       <div>
         <label htmlFor="user-id">아이디</label>
       </div>
@@ -28,7 +35,7 @@ function LoginForm() {
         <label htmlFor="user-id">비밀번호</label>
       </div>
       <div>
-        <Input name="user-password" value={password} onChange={onChangePassword} required />
+        <Input type="password" name="user-password" value={password} onChange={onChangePassword} required />
       </div>
 
       {/* 객체로 스타일을 주면 리렌더링 됨 {} === {} -> false */}
@@ -42,9 +49,13 @@ function LoginForm() {
           </a>
         </Link>
       </ButtonWrapper>
-    </Form>
+    </FormWrapper>
   );
 }
+
+const FormWrapper = styled(Form)`
+  padding: 10px;
+`;
 
 const ButtonWrapper = styled.div`
   margin-top: 10px;
