@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from "react";
 import Link from "next/link";
 
+import useInput from "../hooks/useInput";
+
 import { Form, Input, Button } from "antd";
 import styled from "styled-components";
 
@@ -8,16 +10,8 @@ interface Props {
   setIsLoggedIn: any;
 }
 function LoginForm({ setIsLoggedIn }: Props) {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-
-  const onChangeId = useCallback(e => {
-    setId(e.target.value);
-  }, []);
-
-  const onChangePassword = useCallback(e => {
-    setPassword(e.target.value);
-  }, []);
+  const [id, onChangeId] = useInput("");
+  const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
