@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   b070: "rgba(0, 0, 0, 0.7)",
   b087: "#212121",
   g050: "#9c9ca7",
@@ -45,13 +45,13 @@ const colors = {
   shadows: "rgba(33, 40, 74, 0.1)",
 };
 
-const breakPoint = {
+export const breakPoint = {
   Tablet: "768px",
   MobileS: "320px",
   MobileM: "420px",
 };
 
-const fonts = {
+export const fonts = {
   text_1_bold: "font-size: 32px; line-height: 1.38; font-weight: 600;",
   text_2_bold: "font-size: 24px; line-height: 1.42; font-weight: 600;",
   text_3_bold: "font-size: 18px; line-height: 1.34; font-weight: 600;",
