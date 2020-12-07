@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 
 interface Props {
-  initialValue: any | null;
+  initialValue: null;
 }
 
 export default function useInput({ initialValue }: Props) {

@@ -6,6 +6,12 @@ import useInput from "../hooks/useInput";
 
 import styled from "styled-components";
 
+interface InputMsg {
+  ids: string;
+  nickname: string;
+  password: string;
+}
+
 function Signup() {
   const [id, onChangeId] = useInput("");
   const [nickname, onChangeNickName] = useInput("");
