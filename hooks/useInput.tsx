@@ -5,7 +5,6 @@ interface Props {
 }
 
 export default function useInput({ initialValue }: Props) {
-  console.log("intialvaliue", initialValue);
   const [value, setValue] = useState(initialValue);
   const handler = useCallback(e => {
     setValue(e.target.value);
