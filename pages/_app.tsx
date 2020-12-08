@@ -5,6 +5,8 @@ import { theme } from "../styles/theme";
 import "antd/dist/antd.css";
 import Head from "next/head";
 
+import wrapper from "../store/configureStore";
+
 // App이 최상의 부모 component라고 생각하면됨.
 // 공통적으로 사용하는 것을 _app.tsx에 모아둔다.
 function App({ Component, pageProps }: AppProps) {
@@ -20,4 +22,5 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default App;
+// 예전에는 Provider로 감싸줬는데, 6버전 이후에는 알아서 감싸준다.
+export default wrapper.withRedux(App);
