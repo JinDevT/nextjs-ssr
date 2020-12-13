@@ -1,50 +1,79 @@
-import { HYDRATE } from "next-redux-wrapper";
-
-const LOGIN = "main/LOGIN" as const;
-
-type userType = {
-  isLoggedIn: boolean;
-  user: any;
+const dummyUser = {
+  id: 1,
+  nickname: "JinDevT",
+  Posts: [],
+  Followings: [],
+  Followers: [],
 };
 
-const initialState: userType = {
+export const initialState = {
   isLoggedIn: false,
   user: null,
+  signUpData: {},
+  loginData: {},
 };
 
-// action creator
-export const loginAction = data => {
+export const SIGN_UP = "SIGN_UP";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const LOG_IN = "LOG_IN"; // 액션의 이름
+export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS"; // 액션의 이름
+export const LOG_IN_FAILURE = "LOG_IN_FAILURE"; // 액션의 이름
+export const LOG_OUT = "LOG_OUT";
+
+export const signUpAction = data => {
   return {
-    type: LOGIN,
+    type: SIGN_UP,
     data,
   };
 };
 
-// (이전상태, 액션) => 다음상태
-function user(state: userType = initialState, action) {
+export const signUpSuccess = {
+  type: SIGN_UP_SUCCESS,
+};
+
+export const loginAction = data => {
+  return {
+    type: LOG_IN,
+    data,
+  };
+};
+export const logoutAction = {
+  type: LOG_OUT,
+};
+export const signUp = data => {
+  return {
+    type: SIGN_UP,
+    data,
+  };
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
-    case HYDRATE:
-      return { ...state, ...action.payload };
-
-    case LOGIN:
+    case LOG_IN: {
       return {
-        user: action.data,
+        ...state,
         isLoggedIn: true,
+        user: dummyUser,
+        loginData: action.data,
       };
-
-    // case "LOGOUT":
-    //   return {
-    //     ...state,
-    //     users: {
-    //       ...state.users,
-    //       isLoggedIn: false,
-    //       user: null,
-    //     },
-    //   };
-
-    default:
-      return state;
+    }
+    case LOG_OUT: {
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: null,
+      };
+    }
+    case SIGN_UP: {
+      return {
+        ...state,
+        signUpData: action.data,
+      };
+    }
+    default: {
+      return {
+        ...state,
+      };
+    }
   }
-}
-
-export default user;
+};
