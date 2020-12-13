@@ -1,12 +1,7 @@
 import React from "react";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
-import { UserType } from "../../@type/user";
-
-interface Props {
-  user: UserType;
-}
-function User({ user }: Props) {
+function User({ user }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <h1>Dynamic routing</h1>
@@ -23,7 +18,7 @@ function User({ user }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   console.log("query: ", context.query);
   const { id } = context.query;
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
