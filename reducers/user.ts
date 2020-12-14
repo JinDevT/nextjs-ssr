@@ -37,8 +37,10 @@ export const loginAction = data => {
     data,
   };
 };
-export const logoutAction = {
-  type: LOG_OUT,
+export const logoutAction = () => {
+  return {
+    type: LOG_OUT,
+  };
 };
 export const signUp = data => {
   return {
@@ -47,7 +49,7 @@ export const signUp = data => {
   };
 };
 
-export default (state = initialState, action) => {
+const useReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN: {
       return {
@@ -77,3 +79,5 @@ export default (state = initialState, action) => {
     }
   }
 };
+
+export default useReducer;
