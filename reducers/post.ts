@@ -23,6 +23,7 @@ export const initialState = {
       ],
     },
   ],
+  Images: [],
   imagePaths: [],
   postAdded: false,
 };
