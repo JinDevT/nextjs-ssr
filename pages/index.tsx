@@ -1,9 +1,10 @@
 import React from "react";
-import Head from "next/head";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
+import PostForm from "../components/PostForm";
+import PostCard from "../components/PostForm";
 // pages folder 안에 파일들을 코드 스플리팅된 코드로 만들어진다.
 // pages 는 무조건 pages
 
@@ -16,7 +17,9 @@ const Home = () => {
         <Main>
           {isLoggedIn && <PostForm />}
           {mainPosts.map(post => (
-            <PostCard key={post.id} post={post} />
+            <div key={post.id}>
+              <PostCard post={post} />
+            </div>
           ))}
         </Main>
       </HomeBlock>
