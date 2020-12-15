@@ -1,9 +1,10 @@
 import { Form, Input, Button } from "antd";
 import React, { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
+import { RootState } from "../reducers";
 
 function PostForm() {
-  const { imagePaths } = useSelector(state => state.post);
+  const { imagePaths } = useSelector((state: RootState) => state.post);
   const [text, onChangeText] = useState("");
   const onSubmit = useCallback(() => {}, []);
   return (
