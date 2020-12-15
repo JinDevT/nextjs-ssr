@@ -1,16 +1,19 @@
 import React from "react";
-import Layout from "../components/Layout";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
 
+import { RootState } from "../reducers";
+
+import Layout from "../components/Layout";
 import PostForm from "../components/PostForm";
-import PostCard from "../components/PostForm";
+import PostCard from "../components/PostCard";
+
+import styled from "styled-components";
 // pages folder 안에 파일들을 코드 스플리팅된 코드로 만들어진다.
 // pages 는 무조건 pages
 
 const Home = () => {
-  const { isLoggedIn } = useSelector(state => state.user);
-  const { mainPosts } = useSelector(state => state.post);
+  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { mainPosts } = useSelector((state: RootState) => state.post);
   return (
     <Layout>
       <HomeBlock>
