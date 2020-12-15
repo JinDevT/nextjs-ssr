@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { Form, Input, Button } from "antd";
 import { useSelector } from "react-redux";
+
 import { RootState } from "../reducers";
+
+import { Form, Input, Button } from "antd";
 import styled from "styled-components";
 
 function PostForm() {

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
