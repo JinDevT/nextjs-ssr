@@ -1,14 +1,15 @@
-import { Form, Input, Button } from "antd";
 import React, { useCallback, useState } from "react";
+import { Form, Input, Button } from "antd";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducers";
+import styled from "styled-components";
 
 function PostForm() {
   const { imagePaths } = useSelector((state: RootState) => state.post);
   const [text, onChangeText] = useState("");
   const onSubmit = useCallback(() => {}, []);
   return (
-    <Form style={{ margin: "10px 0 20px" }} encType="multipart/form-data" onFinish={onSubmit}>
+    <PostFormBlock encType="multipart/form-data" onFinish={onSubmit}>
       <Input.TextArea
         value={text}
         onChange={onChangeText}
@@ -24,16 +25,27 @@ function PostForm() {
       </div>
       <div>
         {imagePaths.map(v => (
-          <div key={v} style={{ display: "inline-block" }}>
-            <img src={v} style={{ width: "200px" }} alt={v} />
+          <ImagBox>
+            <img src={v} alt={v} />
             <div>
               <Button>제거</Button>
             </div>
-          </div>
+          </ImagBox>
         ))}
       </div>
-    </Form>
+    </PostFormBlock>
   );
 }
+
+const PostFormBlock = styled(Form)`
+  margin: 10px 0 20px;
+`;
+
+const ImagBox = styled.div`
+  display: inline-block;
+  img {
+    width: 200px;
+  }
+`;
 
 export default PostForm;
