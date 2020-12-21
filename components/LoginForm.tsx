@@ -56,7 +56,9 @@ function LoginForm() {
 }
 
 const FormWrapper = styled(Form)`
+  margin: 20px 12px;
   padding: 10px;
+  border: 1px solid #f0f0f0;
 `;
 
 const ButtonWrapper = styled.div`
