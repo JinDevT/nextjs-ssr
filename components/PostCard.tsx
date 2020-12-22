@@ -1,7 +1,7 @@
 import React from "react";
-import { PostState, PostsState } from "../@type/post";
+import { PostsState } from "../@type/post";
 interface Props {
-  post: any;
+  post: PostsState;
 }
 function PostCard({ post }: Props) {
   console.log("postssssss: ", post);
