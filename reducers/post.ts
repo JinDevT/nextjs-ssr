@@ -23,7 +23,7 @@ export const initialState = {
       ],
     },
   ],
-  Images: [],
+  images: [],
   imagePaths: [],
   postAdded: false,
 };
@@ -33,23 +33,23 @@ export const addPost = {
   type: ADD_POST,
 };
 
-const dummyPost = {
-  id: 2,
-  content: "더미데이터",
-  User: {
-    id: 1,
-    nickname: "JinDevT",
-  },
-  Images: [],
-  Comments: [],
-};
+// const dummyPost = {
+//   id: 2,
+//   content: "더미데이터",
+//   user: {
+//     id: 1,
+//     nickname: "JinDevT",
+//   },
+//   images: [],
+//   comments: [],
+// };
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
       return {
         ...state,
-        mainPosts: [dummyPost, ...state.mainPosts],
+        mainPosts: [...state.mainPosts],
         postAdded: true,
       };
     default:
