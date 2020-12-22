@@ -23,7 +23,7 @@ export const initialState = {
       ],
     },
   ],
-  Images: [],
+  images: [],
   imagePaths: [],
   postAdded: false,
 };
@@ -36,12 +36,12 @@ export const addPost = {
 const dummyPost = {
   id: 2,
   content: "더미데이터",
-  User: {
+  user: {
     id: 1,
     nickname: "JinDevT",
   },
-  Images: [],
-  Comments: [],
+  images: [],
+  comments: [],
 };
 
 const postReducer = (state = initialState, action) => {

@@ -1,12 +1,16 @@
 export interface PostState {
   id: number;
-  user: {
+  User: {
     id: number;
     nickname: string;
   };
-  contnet: string;
-  comments: {
-    nickname: string;
-    cotent: string;
-  };
+  content: string;
+  Comments: {
+    User: {
+      nickname: string;
+    };
+    content: string;
+  }[];
 }
+
+export type PostsState = PostState[];

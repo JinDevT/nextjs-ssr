@@ -14,6 +14,7 @@ import styled from "styled-components";
 const Home = () => {
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
   const { mainPosts } = useSelector((state: RootState) => state.post);
+  console.log("post: ", mainPosts);
   return (
     <Layout>
       <HomeBlock>
