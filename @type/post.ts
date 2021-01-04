@@ -5,6 +5,9 @@ export interface PostState {
     nickname: string;
   };
   content: string;
+  Images: {
+    src: string;
+  }[];
   Comments: {
     User: {
       nickname: string;
@@ -20,6 +23,9 @@ export interface PostsState {
     nickname: string;
   };
   content: string;
+  Images: {
+    src: string;
+  }[];
   Comments: {
     User: {
       nickname: string;
