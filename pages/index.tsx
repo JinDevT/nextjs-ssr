@@ -41,13 +41,11 @@ const HomeBlock = styled.div`
 `;
 
 const Main = styled.main`
-  padding: 5rem 0;
+  /* padding: 5rem 0; */
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+  width: 100%;
   h1 {
     margin: 0;
     line-height: 1.15;
