@@ -8,7 +8,6 @@ import {
   EllipsisOutlined,
   HeartTwoTone,
 } from "@ant-design/icons";
-import ButtonGroup from "antd/lib/button/button-group";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducers";
 import Avatar from "antd/lib/avatar/avatar";
@@ -33,7 +32,8 @@ function PostCard({ post }: Props) {
   // 위의 코드를 옵셔널 체이닝을 사용하면
   // alert(user?.address?.street); 로 사용 가능
   const onToggleLike = useCallback(() => {
-    setLiked(prev => !prev); // true false를 조정할 떄 이런식으로!
+    setLiked(prev => !prev);
+    // true false를 조정할 떄 이런식으로!
     // 이전 데이트 기반으로 다음 데이터를 만든다.
   }, []);
 
