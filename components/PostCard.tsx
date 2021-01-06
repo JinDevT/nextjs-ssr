@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { PostsState } from "../@type/post";
+import { PostsState, PostState } from "../@type/post";
 import { Card, Popover, Button, List, Comment } from "antd";
 import {
   RetweetOutlined,
@@ -12,11 +12,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../reducers";
 import Avatar from "antd/lib/avatar/avatar";
 import PostImages from "./PostImages";
+import CommentForm from "./CommentForm";
 interface Props {
-  post: PostsState;
+  post: PostState;
 }
 function PostCard({ post }: Props) {
-  console.log("postssssss: ", post);
   const [liked, setLiked] = useState(false);
   const [commentFormOpened, setCommentFormOpened] = useState(false);
   const id = useSelector((state: RootState) => state.user.me?.id);
@@ -80,7 +80,7 @@ function PostCard({ post }: Props) {
       </Card>
       {commentFormOpened && (
         <div>
-          <CommentForm />
+          <CommentForm post={post} />
           <List
             header={`${post.Comments.length}개의 댓글`}
             itemLayout="horizontal"
