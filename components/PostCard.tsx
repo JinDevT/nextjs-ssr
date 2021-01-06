@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { PostsState } from "../@type/post";
-import { Card, Popover, Button } from "antd";
+import { Card, Popover, Button, List, Comment } from "antd";
 import {
   RetweetOutlined,
   HeartOutlined,
@@ -78,7 +78,25 @@ function PostCard({ post }: Props) {
           description={post.content}
         />
       </Card>
-      {commentFormOpened && <div>댓글부분</div>}
+      {commentFormOpened && (
+        <div>
+          <CommentForm />
+          <List
+            header={`${post.Comments.length}개의 댓글`}
+            itemLayout="horizontal"
+            dataSource={post.Comments}
+            renderItem={item => (
+              <li>
+                <Comment
+                  author={item.User.nickname}
+                  avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
+                  content={item.content}
+                />
+              </li>
+            )}
+          />
+        </div>
+      )}
     </div>
   );
 }
