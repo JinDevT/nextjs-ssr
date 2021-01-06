@@ -16,9 +16,13 @@ function CommentForm({ post }: Props) {
   }, [commentText]);
   return (
     <Form onFinish={onSubmitComment}>
-      <Form.Item>
+      <Form.Item style={{ position: "relative", margin: 0 }}>
         <Input.TextArea value={commentText} onChange={onChangeCommentText} rows={4} />
-        <Button type="primary" htmlType="submit">
+        <Button
+          style={{ position: "absolute", right: 0, bottom: -40 }}
+          type="primary"
+          htmlType="submit"
+        >
           삐약
         </Button>
       </Form.Item>
