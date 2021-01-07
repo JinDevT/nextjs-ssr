@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 
+import styled from "styled-components";
 interface PostImagesProps {
   images: { src: string }[];
 }
+
 function PostImages({ images }: PostImagesProps) {
   const [showImagesZoom, setShowImagesZoom] = useState(false);
   const onZoom = useCallback(() => {
@@ -24,16 +26,34 @@ function PostImages({ images }: PostImagesProps) {
 
   if (images.length === 2) {
     return (
-      <>
-        <img role="presentation" src={images[0].src} alt={images[0].src} onClick={onZoom} />
-        <img role="presentation" src={images[1].src} alt={images[0].src} onClick={onZoom} />
-      </>
+      <div style={{ display: "flex" }}>
+        <img
+          role="presentation"
+          width="50%"
+          src={images[0].src}
+          alt={images[0].src}
+          onClick={onZoom}
+        />
+        <img
+          role="presentation"
+          width="50%"
+          src={images[1].src}
+          alt={images[0].src}
+          onClick={onZoom}
+        />
+      </div>
     );
   }
   return (
     <>
-      <div>
-        <img role="presentation" src={images[0].src} alt={images[0].src} onClick={onZoom} />
+      <PostImagesBlock>
+        <img
+          role="presentation"
+          width="50%"
+          src={images[0].src}
+          alt={images[0].src}
+          onClick={onZoom}
+        />
         <div
           role="presentation"
           style={{
@@ -48,9 +68,15 @@ function PostImages({ images }: PostImagesProps) {
           <br />
           {images.length - 1} 개의 사진 더보기
         </div>
-      </div>
+      </PostImagesBlock>
     </>
   );
 }
 
+const PostImagesBlock = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #f0f0f0;
+`;
 export default PostImages;
