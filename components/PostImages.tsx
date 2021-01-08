@@ -8,9 +8,15 @@ interface PostImagesProps {
 
 function PostImages({ images }: PostImagesProps) {
   const [showImagesZoom, setShowImagesZoom] = useState(false);
+
   const onZoom = useCallback(() => {
     setShowImagesZoom(true);
-  }, []);
+  }, [showImagesZoom]);
+
+  const onCloseZoom = useCallback(() => {
+    setShowImagesZoom(false);
+  }, [showImagesZoom]);
+
   if (images.length === 1) {
     return (
       <>
@@ -35,13 +41,7 @@ function PostImages({ images }: PostImagesProps) {
   return (
     <>
       <PostImagesBlock>
-        <img
-          role="presentation"
-          width="50%"
-          src={images[0].src}
-          alt={images[0].src}
-          onClick={onZoom}
-        />
+        <img role="presentation" src={images[0].src} alt={images[0].src} onClick={onZoom} />
         <ImagePlusBlock role="presentation" onClick={onZoom}>
           <PlusOutlined />
           <br />
@@ -57,6 +57,10 @@ const PostImagesBlock = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #f0f0f0;
+
+  img {
+    width: 50%;
+  }
 `;
 
 const TwoInImasgesBlock = styled.div`
