@@ -26,22 +26,10 @@ function PostImages({ images }: PostImagesProps) {
 
   if (images.length === 2) {
     return (
-      <div style={{ display: "flex" }}>
-        <img
-          role="presentation"
-          width="50%"
-          src={images[0].src}
-          alt={images[0].src}
-          onClick={onZoom}
-        />
-        <img
-          role="presentation"
-          width="50%"
-          src={images[1].src}
-          alt={images[0].src}
-          onClick={onZoom}
-        />
-      </div>
+      <TwoInImasgesBlock>
+        <img role="presentation" src={images[0].src} alt={images[0].src} onClick={onZoom} />
+        <img role="presentation" src={images[1].src} alt={images[0].src} onClick={onZoom} />
+      </TwoInImasgesBlock>
     );
   }
   return (
@@ -54,20 +42,11 @@ function PostImages({ images }: PostImagesProps) {
           alt={images[0].src}
           onClick={onZoom}
         />
-        <div
-          role="presentation"
-          style={{
-            display: "inline-block",
-            width: "50%",
-            textAlign: "center",
-            verticalAlign: "middle",
-          }}
-          onClick={onZoom}
-        >
+        <ImagePlusBlock role="presentation" onClick={onZoom}>
           <PlusOutlined />
           <br />
           {images.length - 1} 개의 사진 더보기
-        </div>
+        </ImagePlusBlock>
       </PostImagesBlock>
     </>
   );
@@ -78,5 +57,20 @@ const PostImagesBlock = styled.div`
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #f0f0f0;
+`;
+
+const TwoInImasgesBlock = styled.div`
+  display: flex;
+`;
+
+const ImagePlusBlock = styled.div`
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  vertical-align: middle;
+
+  img {
+    width: 50%;
+  }
 `;
 export default PostImages;
