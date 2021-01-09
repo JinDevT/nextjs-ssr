@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Slick from "react-slick";
 
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+import { CloseOutlined } from "@ant-design/icons";
 interface Props {
   images: { src: string }[];
   onClose: () => void;
@@ -10,6 +11,7 @@ function ImagesZoom({ images, onClose }: Props) {
   const [currentSlide, setCurrentSlide] = useState(0);
   return (
     <ImagesZoomBlock>
+      <Global />
       <Header>
         <h1>상세 이미지</h1>
         <CloseButton onClick={onClose}>X</CloseButton>
@@ -36,6 +38,12 @@ function ImagesZoom({ images, onClose }: Props) {
   );
 }
 
+const Global = createGlobalStyle`
+  .slick-slide {
+    display: inline-block;
+  }
+`;
+
 // 함수를 백틱 두개로도 호출 가능. 즉 div 함수를 호출하는 것 이다.
 const ImagesZoomBlock = styled.div`
   position: fixed;
@@ -53,7 +61,7 @@ const Header = styled.header`
   background-color: white;
   text-align: center;
 
-  & > h1 {
+  & h1 {
     margin: 0;
     font-size: 17px;
     color: #333;
@@ -61,7 +69,7 @@ const Header = styled.header`
   }
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled(CloseOutlined)`
   position: absolute;
   top: 0;
   right: 0;
@@ -79,7 +87,7 @@ const ImageWrapper = styled.div`
   padding: 32px;
   text-align: center;
 
-  & > img {
+  & img {
     margin: 0 auto;
     max-height: 750px;
   }
