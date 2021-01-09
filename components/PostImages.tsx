@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
+import ImagesZoom from "./ImagesZoom";
 
 import styled from "styled-components";
 interface PostImagesProps {
@@ -26,6 +27,7 @@ function PostImages({ images }: PostImagesProps) {
 
         */}
         <img role="presentation" src={images[0].src} alt={images[0].src} onClick={onZoom} />
+        {showImagesZoom && <ImagesZoom images={images} onClose={onCloseZoom} />}
       </>
     );
   }
@@ -35,6 +37,7 @@ function PostImages({ images }: PostImagesProps) {
       <TwoInImasgesBlock>
         <img role="presentation" src={images[0].src} alt={images[0].src} onClick={onZoom} />
         <img role="presentation" src={images[1].src} alt={images[0].src} onClick={onZoom} />
+        {showImagesZoom && <ImagesZoom images={images} onClose={onCloseZoom} />}
       </TwoInImasgesBlock>
     );
   }
@@ -48,6 +51,7 @@ function PostImages({ images }: PostImagesProps) {
           {images.length - 1} 개의 사진 더보기
         </ImagePlusBlock>
       </PostImagesBlock>
+      {showImagesZoom && <ImagesZoom images={images} onClose={onCloseZoom} />}
     </>
   );
 }
