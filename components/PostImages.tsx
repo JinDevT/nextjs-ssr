@@ -51,6 +51,7 @@ function PostImages({ images }: PostImagesProps) {
           {images.length - 1} 개의 사진 더보기
         </ImagePlusBlock>
       </PostImagesBlock>
+      {showImagesZoom && <ImagesZoom images={images} onClose={onCloseZoom} />}
     </>
   );
 }
