@@ -1,10 +1,19 @@
 import { createWrapper } from "next-redux-wrapper";
 import { createStore, compose, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+
 import reducer from "../reducers";
 
+// 액션이 일어났을 떄, action을 console로 보는 middleware
+// 로깅해주는 middleware
+const loggerMiddleware = ({ dispatch, getState }) => next => action => {
+  console.log(action);
+  return next(action);
+};
+
 const configureStore = () => {
-  const middlewares = [];
+  // middlewares에 사용하고자 하는 middleware를 설정한다.
+  const middlewares = [, loggerMiddleware];
   const enhancer =
     process.env.NODE_ENV === "production"
       ? compose(applyMiddleware(...middlewares))
