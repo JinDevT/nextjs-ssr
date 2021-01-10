@@ -1,8 +1,9 @@
 import { createWrapper } from "next-redux-wrapper";
 import { createStore, compose, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-
+import createSagaMiddleware from "redux-saga";
 import reducer from "../reducers";
+import rootSaga from "../sagas";
 
 // 액션이 일어났을 떄, action을 console로 보는 middleware
 // 로깅해주는 middleware
@@ -13,12 +14,14 @@ const loggerMiddleware = ({ dispatch, getState }) => next => action => {
 
 const configureStore = () => {
   // middlewares에 사용하고자 하는 middleware를 설정한다.
-  const middlewares = [, loggerMiddleware];
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [sagaMiddleware, loggerMiddleware];
   const enhancer =
     process.env.NODE_ENV === "production"
       ? compose(applyMiddleware(...middlewares))
       : composeWithDevTools(applyMiddleware(...middlewares));
   const store = createStore(reducer, enhancer);
+  store.sagaTask = sagaMiddleware.run(rootSaga);
   return store;
 };
 
