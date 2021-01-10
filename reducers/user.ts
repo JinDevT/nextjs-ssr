@@ -49,6 +49,25 @@ export const signUp = data => {
   };
 };
 
+// thunk example
+// thunk 말고 saga를 쓰는이우
+// 지연 같은 기능은 thunk는 직접 구현해야한다. (setTimeout())
+// saga는 지원을 해줌.
+export const loginAction = data => {
+  return (dispatch, getState) => {
+    const state = getState();
+    dispatch(loginRequestAction());
+    axios
+      .post("/api/login")
+      .then(res => {
+        dispatch(loginSuccessAction());
+      })
+      .catch(err => {
+        dispatch(loginFailureAction(err));
+      });
+  };
+};
+
 const useReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN: {
