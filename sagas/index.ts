@@ -11,6 +11,10 @@ function loginAPI(data) {
   return axios.post("/api/login", data);
 }
 
+function logoutAPI() {
+  return axios.post("/api/logout");
+}
+
 function* login(action) {
   try {
     // call 대신 fork를 쓰면 data를 받아오기 전에 다음 코드가 실행됨.
@@ -32,11 +36,32 @@ function* login(action) {
   }
 }
 
+function* logout(action) {
+  try {
+    const result = yield call(logoutAPI);
+    yield put({
+      type: "LOGOUT_SUCCESS",
+      // 성공 결과
+      data: result.data,
+    });
+  } catch (err) {
+    yield put({
+      type: "LOGOUT_FAILURE",
+      // 실패 결과
+      data: err.response.data,
+    });
+  }
+}
+
 function* watchLogin() {
   // LOGIN_REQUEST 액션이 들어오면 login generator을 실행한다.
   yield take("LOGIN_REQUEST", login);
 }
 
+function* watchLogout() {
+  yield take("LOGOUT_REQUEST", logout);
+}
+
 export default function* rootSata() {
-  yield all([fork(watchLogin)]);
+  yield all([fork(watchLogin), fork(watchLogout)]);
 }
