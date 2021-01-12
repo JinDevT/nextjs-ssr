@@ -1,4 +1,4 @@
-import { all, fork, take, call, put } from "redux-saga/effects";
+import { all, fork, take, call, put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 // all : 배열을 받음 -> 배열안에 있는것을 한번에 실행함. 동시실행
 // fork : 함수를 실행함 - 비동기 함수 호출
@@ -55,11 +55,13 @@ function* logout(action) {
 
 function* watchLogin() {
   // LOGIN_REQUEST 액션이 들어오면 login generator을 실행한다.
-  yield take("LOGIN_REQUEST", login);
+  // yied take 단점: 일회용이다. 한번 실행되면 끝.
+  // 해결방법: takeEvery 사용
+  yield takeEvery("LOGIN_REQUEST", login);
 }
 
 function* watchLogout() {
-  yield take("LOGOUT_REQUEST", logout);
+  yield takeEvery("LOGOUT_REQUEST", logout);
 }
 
 export default function* rootSata() {
