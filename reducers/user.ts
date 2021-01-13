@@ -67,6 +67,7 @@ const useReducer = (state = initialState, action) => {
         isLoggingIn: false,
         isLoggedIn: true,
         loginData: action.data,
+        me: { ...action.data, nickname: "Max" },
       };
     }
     case LOG_IN_FAILURE: {
