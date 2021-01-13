@@ -1,23 +1,24 @@
 import React, { useState, useCallback } from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { loginAction } from "../reducers/user";
+import { loginRequestAction } from "../reducers/user";
 
 import useInput from "../hooks/useInput";
 
 import { Form, Input, Button } from "antd";
 import styled from "styled-components";
+import { RootState } from "../reducers";
 
 function LoginForm() {
   const dispatch = useDispatch();
-
+  const { isLoggingIn } = useSelector((state: RootState) => state.user);
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
-    dispatch(loginAction({ id, password }));
+    dispatch(loginRequestAction({ id, password }));
   }, [id, password]);
   return (
     <FormWrapper onFinish={onSubmitForm}>
@@ -42,7 +43,7 @@ function LoginForm() {
 
       {/* 객체로 스타일을 주면 리렌더링 됨 {} === {} -> false */}
       <ButtonWrapper>
-        <Button type="primary" htmlType="submit" loading={false}>
+        <Button type="primary" htmlType="submit" loading={isLoggingIn}>
           로그인
         </Button>
         <Link href="/signup">
