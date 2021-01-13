@@ -9,6 +9,7 @@ const dummyUser = {
 export const initialState = {
   isLoggingIn: false, // 로그인 시도중
   isLoggedIn: false,
+  isLoggingOut: false, // 로그아웃 시도중
   me: null,
   signUpData: {},
   loginData: {},
@@ -78,22 +79,21 @@ const useReducer = (state = initialState, action) => {
     case LOG_OUT_REQUEST: {
       return {
         ...state,
-        isLoggedIn: false,
-        user: null,
+        isLoggingOut: true,
       };
     }
     case LOG_OUT_SUCCESS: {
       return {
         ...state,
+        isLoggingOut: false,
         isLoggedIn: false,
-        user: null,
+        me: null,
       };
     }
     case LOG_OUT_FAILURE: {
       return {
         ...state,
-        isLoggedIn: false,
-        user: null,
+        isLoggingOut: false,
       };
     }
     case SIGN_UP: {
