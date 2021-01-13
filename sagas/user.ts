@@ -13,12 +13,13 @@ function* login(action) {
   try {
     yield delay(1000);
     yield put({
-      type: "LOGIN_SUCCESS",
+      type: "LOG_IN_SUCCESS",
+      data: action.data,
       // 성공 결과
     });
   } catch (err) {
     yield put({
-      type: "LOGIN_FAILURE",
+      type: "LOG_IN_FAILURE",
       // 실패 결과
       data: err.response.data,
     });
@@ -29,12 +30,12 @@ function* logout(action) {
   try {
     yield delay(1000);
     yield put({
-      type: "LOGOUT_SUCCESS",
+      type: "LOG_OUT_SUCCESS",
       // 성공 결과
     });
   } catch (err) {
     yield put({
-      type: "LOGOUT_FAILURE",
+      type: "LOG_OUT_FAILURE",
       // 실패 결과
       data: err.response.data,
     });
@@ -42,11 +43,11 @@ function* logout(action) {
 }
 
 function* watchLogIn() {
-  yield takeEvery("LOGIN_REQUEST", login);
+  yield takeEvery("LOG_IN_REQUEST", login);
 }
 
 function* watchLogOut() {
-  yield takeEvery("LOGOUT_REQUEST", logout);
+  yield takeEvery("LOG_OUT_REQUEST", logout);
 }
 
 export default function* userSaga() {
