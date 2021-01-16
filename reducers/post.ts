@@ -38,29 +38,33 @@ export const initialState = {
   postAdded: false,
 };
 
-const ADD_POST = "POST/ADD_POST";
-export const addPost = {
-  type: ADD_POST,
-};
+const ADD_POST_REQUEST = "POST/ADD_POST_REQUEST";
+const ADD_POST_SUCCESS = "POST/ADD_POST_SUCCESS";
+const ADD_POST_FAILURE = "POST/ADD_POST_FAILURE";
 
-// const dummyPost = {
-//   id: 2,
-//   content: "더미데이터",
-//   user: {
-//     id: 1,
-//     nickname: "JinDevT",
-//   },
-//   images: [],
-//   comments: [],
-// };
+export const addPostAction = data => {
+  return {
+    type: ADD_POST_REQUEST,
+    data,
+  };
+};
 
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST_REQUEST:
+      return {
+        ...state,
+      };
+    case ADD_POST_SUCCESS:
       return {
         ...state,
         mainPosts: [...state.mainPosts],
         postAdded: true,
+      };
+    case ADD_POST_FAILURE:
+      return {
+        ...state,
+        postAddes: false,
       };
     default:
       return state;
