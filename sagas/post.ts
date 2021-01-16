@@ -10,6 +10,7 @@ function* addPost(action) {
     yield delay(1000);
     yield put({
       type: "ADD_POST_SUCCESS",
+      data: action.data,
       // 성공 결과
     });
   } catch (err) {
