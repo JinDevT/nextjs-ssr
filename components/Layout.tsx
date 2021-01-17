@@ -17,7 +17,6 @@ interface Props {
 // 반응형: 가로 -> 세로, 모바일 -> 태블릿 -> 데스크탑 순서로 하는게 편함.
 function Layout({ children }: Props) {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-  console.log("is: ", isLoggedIn);
 
   // 리렌더링 : 리렌더링은 return 부분이 리렌더링 되는게 아니라
   // 이전 컴포넌트 virtual dom과 지금 컴포넌트 virtual dom과 비교해서 달라진 부분만 다시 리레더링 된다

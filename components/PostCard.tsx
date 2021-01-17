@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { PostsState, PostState } from "../@type/post";
+import { PostState } from "../@type/post";
 import { Card, Popover, Button, List, Comment } from "antd";
 import {
   RetweetOutlined,
@@ -13,6 +13,8 @@ import { RootState } from "../reducers";
 import Avatar from "antd/lib/avatar/avatar";
 import PostImages from "./PostImages";
 import CommentForm from "./CommentForm";
+
+import styled from "styled-components";
 interface Props {
   post: PostState;
 }
@@ -41,7 +43,7 @@ function PostCard({ post }: Props) {
     setCommentFormOpened(prev => !prev);
   }, []);
   return (
-    <div style={{ marginBottom: 20 }}>
+    <PostCardBlock>
       <Card
         cover={post.Images[0] && <PostImages images={post.Images} />}
         actions={[
@@ -97,8 +99,11 @@ function PostCard({ post }: Props) {
           />
         </div>
       )}
-    </div>
+    </PostCardBlock>
   );
 }
 
+const PostCardBlock = styled.div`
+  margin-bottom: 20px;
+`;
 export default PostCard;
