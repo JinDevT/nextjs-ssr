@@ -23,7 +23,7 @@ function CommentForm({ post }: Props) {
           type="primary"
           htmlType="submit"
         >
-          삐약
+          등록
         </Button>
       </Form.Item>
     </Form>
