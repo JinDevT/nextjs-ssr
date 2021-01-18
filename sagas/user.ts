@@ -69,14 +69,17 @@ function* signup() {
   }
 }
 
+// login
 function* watchLogIn() {
   yield takeEvery(LOG_IN_REQUEST, login);
 }
 
+// logout
 function* watchLogOut() {
   yield takeEvery(LOG_OUT_REQUEST, logout);
 }
 
+// signup
 function* watchSignUp() {
   yield takeEvery(SIGN_UP_REQUEST, signup);
 }

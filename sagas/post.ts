@@ -47,10 +47,11 @@ function* addComment(action) {
   }
 }
 
+// post
 function* watchAddPost() {
   yield takeEvery(ADD_POST_REQUEST, addPost);
 }
-
+// comment
 function* watchAddComment() {
   yield takeEvery(ADD_COMMENT_REQUEST, addComment);
 }
