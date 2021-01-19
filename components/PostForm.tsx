@@ -1,21 +1,38 @@
-import React, { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../reducers";
 
 import { Form, Input, Button } from "antd";
 import styled from "styled-components";
+import { addPostAction } from "../reducers/post";
 
 function PostForm() {
   const { imagePaths } = useSelector((state: RootState) => state.post);
-  const [text, onChangeText] = useState("");
-  const onSubmit = useCallback(() => {}, []);
+  const dispatch = useDispatch();
+  const imageInput = useRef<HTMLInputElement>();
+  const [text, setText] = useState("");
+  const onChangeText = useCallback(e => {
+    setText(e.target.value);
+  }, []);
+  const onSubmit = useCallback(e => {
+    dispatch(addPostAction);
+    setText("");
+  }, []);
+  const onClickImageUpload = useCallback(() => {
+    imageInput.current.click();
+  }, [imageInput.current]);
   return (
     <PostFormBlock encType="multipart/form-data" onFinish={onSubmit}>
-      <Input.TextArea value={text} maxLength={140} placeholder="어떤 신기한 일이 있었나요?" />
+      <Input.TextArea
+        value={text}
+        onChange={onChangeText}
+        maxLength={140}
+        placeholder="어떤 신기한 일이 있었나요?"
+      />
       <div>
         <input type="file" multiple hidden />
-        <Button>이미지 업로드</Button>
+        <Button onClick={onClickImageUpload}>이미지 업로드</Button>
         <Button type="primary" style={{ float: "right" }} htmlType="submit">
           짹짹
         </Button>

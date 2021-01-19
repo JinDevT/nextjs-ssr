@@ -16,7 +16,7 @@ interface Props {
 // 일부애들이 공통인 애들
 // 반응형: 가로 -> 세로, 모바일 -> 태블릿 -> 데스크탑 순서로 하는게 편함.
 function Layout({ children }: Props) {
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const { me } = useSelector((state: RootState) => state.user);
 
   // 리렌더링 : 리렌더링은 return 부분이 리렌더링 되는게 아니라
   // 이전 컴포넌트 virtual dom과 지금 컴포넌트 virtual dom과 비교해서 달라진 부분만 다시 리레더링 된다
@@ -47,7 +47,7 @@ function Layout({ children }: Props) {
       <Row gutter={8}>
         {/* 24등분 한다고 생각하면 됨. 24로 나눈이유: 등분하기 좋은 숫자. */}
         <Col xs={24} md={6}>
-          {isLoggedIn ? <UserProfile /> : <LoginForm />}
+          {me ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}
