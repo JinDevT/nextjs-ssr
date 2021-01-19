@@ -13,6 +13,10 @@ function addPostAPI(data) {
   return axios.post("/api/login", data);
 }
 
+function addCommentAPI(data) {
+  return axios.post("/api/login", data);
+}
+
 function* addPost(action) {
   try {
     yield delay(1000);
