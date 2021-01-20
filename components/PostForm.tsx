@@ -10,7 +10,7 @@ import { addPostAction } from "../reducers/post";
 function PostForm() {
   const { imagePaths } = useSelector((state: RootState) => state.post);
   const dispatch = useDispatch();
-  const imageInput = useRef<HTMLInputElement>();
+  const imageInput = useRef<HTMLInputElement>(null);
   const [text, setText] = useState("");
   const onChangeText = useCallback(e => {
     setText(e.target.value);
