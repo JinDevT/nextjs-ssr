@@ -40,7 +40,8 @@ function PostCard({ post }: Props) {
   }, []);
 
   const onToggleComment = useCallback(() => {
-    setCommentFormOpened(prev => !prev);
+    // setCommentFormOpened(prev => !prev);
+    setCommentFormOpened(!commentFormOpened);
   }, []);
   return (
     <PostCardBlock>
