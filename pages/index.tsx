@@ -12,14 +12,13 @@ import styled from "styled-components";
 // pages 는 무조건 pages
 
 const Home = () => {
-  const { isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { logInLoading } = useSelector((state: RootState) => state.user);
   const { mainPosts } = useSelector((state: RootState) => state.post);
-  console.log("post: ", mainPosts);
   return (
     <Layout>
       <HomeBlock>
         <Main>
-          {isLoggedIn && <PostForm />}
+          {logInLoading && <PostForm />}
           {mainPosts.map(post => (
             <div key={post.id}>
               <PostCard post={post} />

@@ -49,10 +49,6 @@ export const signUpAction = data => {
   };
 };
 
-export const signUpSuccess = {
-  type: SIGN_UP_SUCCESS,
-};
-
 export const loginRequestAction = data => {
   return {
     type: LOG_IN_REQUEST,
