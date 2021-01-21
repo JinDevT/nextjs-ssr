@@ -16,7 +16,7 @@ function UserProfile() {
     <Card
       actions={[
         <div key="twit">
-          짹짹
+          트위터
           <br />
           {me.Posts.length}
         </div>,
