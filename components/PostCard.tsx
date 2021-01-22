@@ -21,7 +21,7 @@ interface Props {
 function PostCard({ post }: Props) {
   const [liked, setLiked] = useState(false);
   const [commentFormOpened, setCommentFormOpened] = useState(false);
-  const id = useSelector((state: RootState) => state.user.me?.id);
+  const id = useSelector((state: RootState) => state.user.me);
   // const id = me?.id -> 옵셔널 체이닝 문법: 없으면 undefined를 명시
   // 옵셔널 체이닝 필요한 이유
   // 1. 브라우저에서 동작하는 코드를 개발할 때, 페이지에 존재하지 않는 요소에 접근해 요소의 정보를 가져오려 할 때

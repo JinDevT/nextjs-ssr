@@ -9,7 +9,7 @@ interface Props {
   post: PostState;
 }
 function CommentForm({ post }: Props) {
-  const id = useSelector((state: RootState) => state.user.me?.id);
+  const id = useSelector((state: RootState) => state.user.me);
   const [commentText, onChangeCommentText] = useInput("");
   const onSubmitComment = useCallback(() => {
     console.log(post.id, commentText);
