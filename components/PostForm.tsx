@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from "react";
+import React, { useCallback, useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState } from "../reducers";
@@ -6,22 +6,28 @@ import { RootState } from "../reducers";
 import { Form, Input, Button } from "antd";
 import styled from "styled-components";
 import { addPostAction } from "../reducers/post";
+import useInput from "../hooks/useInput";
 
 function PostForm() {
-  const { imagePaths } = useSelector((state: RootState) => state.post);
+  const { imagePaths, addPostDone } = useSelector((state: RootState) => state.post);
   const dispatch = useDispatch();
   const imageInput = useRef<HTMLInputElement>(null);
-  const [text, setText] = useState("");
-  const onChangeText = useCallback(e => {
-    setText(e.target.value);
-  }, []);
-  const onSubmit = useCallback(e => {
-    dispatch(addPostAction);
-    setText("");
-  }, []);
+  const [text, onChangeText, setText] = useInput("");
+
+  useEffect(() => {
+    if (addPostDone) {
+      setText("");
+    }
+  }, [addPostDone]);
+
+  const onSubmit = useCallback(() => {
+    dispatch(addPostAction(text));
+  }, [text]);
+
   const onClickImageUpload = useCallback(() => {
     imageInput.current.click();
   }, [imageInput.current]);
+
   return (
     <PostFormBlock encType="multipart/form-data" onFinish={onSubmit}>
       <Input.TextArea

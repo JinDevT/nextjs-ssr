@@ -5,5 +5,5 @@ export default function useInput(initialValue: string) {
   const handler = useCallback(e => {
     setValue(e.target.value);
   }, []);
-  return [value, handler] as const;
+  return [value, handler, setValue] as const;
 }
