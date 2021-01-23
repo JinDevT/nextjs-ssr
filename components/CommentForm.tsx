@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { PostState } from "../@type/post";
 import { Form, Input, Button } from "antd";
 import useInput from "../hooks/useInput";
@@ -10,7 +10,15 @@ interface Props {
 }
 function CommentForm({ post }: Props) {
   const id = useSelector((state: RootState) => state.user.me);
-  const [commentText, onChangeCommentText] = useInput("");
+  const { addCommentDone } = useSelector((state: RootState) => state.post);
+  const [commentText, onChangeCommentText, setCommentText] = useInput("");
+
+  useEffect(() => {
+    if (addCommentDone) {
+      setCommentText("");
+    }
+  }, [addCommentDone]);
+
   const onSubmitComment = useCallback(() => {
     console.log(post.id, commentText);
   }, [commentText]);
