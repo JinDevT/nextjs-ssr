@@ -16,14 +16,10 @@ const Home = () => {
   const { mainPosts } = useSelector((state: RootState) => state.post);
   return (
     <Layout>
-      <HomeBlock>
-        <Main>
-          {me && <PostForm />}
-          {mainPosts.map(post => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </Main>
-      </HomeBlock>
+      {me && <PostForm />}
+      {mainPosts.map(post => (
+        <PostCard key={post.id} post={post} />
+      ))}
     </Layout>
   );
 };
