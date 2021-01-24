@@ -17,6 +17,9 @@ export const initialState = {
   signUpLoading: false, // 회원가입 시도중
   signUpDone: false,
   signUpError: null,
+  changeNicknameLoading: false, // 닉네임 변경 시도중
+  changeNicknameDone: false,
+  changeNicknameError: null,
   me: null,
   signUpData: {},
   loginData: {},
@@ -41,6 +44,10 @@ export const FOLLOW_FAILURE = "FOLLOW_FAILURE";
 export const UNFOLLOW_REQUEST = "UNFOLLOW_REQUEST";
 export const UNFOLLOW_SUCCESS = "UNFOLLOW_SUCCESS";
 export const UNFOLLOW_FAILURE = "UNFOLLOW_FAILURE";
+
+export const CHANGE_NICNAME_REQUEST = "CHANGE_NICNAME_REQUEST";
+export const CHANGE_NICNAME_SUCCESS = "CHANGE_NICNAME_SUCCESS";
+export const CHANGE_NICNAME_FAILURE = "CHANGE_NICNAME_FAILURE";
 
 export const signUpAction = data => {
   return {
@@ -130,6 +137,28 @@ const useReducer = (state = initialState, action) => {
         ...state,
         signUpLoading: false,
         signUpError: action.error,
+      };
+    }
+    case CHANGE_NICNAME_REQUEST: {
+      return {
+        ...state,
+        changeNicknameLoading: true,
+        changeNicknameDone: false,
+        changeNicknameError: null,
+      };
+    }
+    case CHANGE_NICNAME_SUCCESS: {
+      return {
+        ...state,
+        changeNicknameLoading: false,
+        changeNicknameDone: true,
+      };
+    }
+    case CHANGE_NICNAME_FAILURE: {
+      return {
+        ...state,
+        changeNicknameLoading: false,
+        changeNicknameError: action.error,
       };
     }
     default: {
