@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 
-import { loginRequestAction } from "../reducers/user";
+import { loginRequestAction, LOG_IN_REQUEST } from "../reducers/user";
 import { RootState } from "../reducers";
 import useInput from "../hooks/useInput";
 
@@ -17,7 +17,13 @@ function LoginForm() {
 
   const onSubmitForm = useCallback(() => {
     console.log(email, password);
-    dispatch(loginRequestAction({ email, password }));
+    dispatch({
+      type: LOG_IN_REQUEST,
+      data: {
+        email,
+        password,
+      },
+    });
   }, [email, password]);
   return (
     <FormWrapper onFinish={onSubmitForm}>

@@ -65,6 +65,17 @@ export const addCommentAction = data => {
   };
 };
 
+const dummyPost = data => ({
+  id: data.id,
+  content: data.content,
+  User: {
+    id: 1,
+    nickname: "Max",
+  },
+  Images: [],
+  Comments: [],
+});
+
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST_REQUEST:
@@ -77,7 +88,7 @@ const postReducer = (state = initialState, action) => {
     case ADD_POST_SUCCESS:
       return {
         ...state,
-        mainPosts: [...state.mainPosts],
+        mainPosts: [dummyPost(action.data), ...state.mainPosts],
         addPostLoading: false,
         addPostDone: true,
       };
