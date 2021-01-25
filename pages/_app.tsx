@@ -14,7 +14,7 @@ function App({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme}>
       <Head>
         <meta charSet="utf-8" />
-        <title>nextjs + typescript</title>
+        <title>트위터</title>
       </Head>
       <GlobalStyle />
       <Component {...pageProps} />
