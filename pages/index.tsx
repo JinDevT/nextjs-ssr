@@ -14,12 +14,11 @@ import styled from "styled-components";
 const Home = () => {
   const { me } = useSelector((state: RootState) => state.user);
   const { mainPosts } = useSelector((state: RootState) => state.post);
+  console.log("mainpOst: ", mainPosts);
   return (
     <Layout>
       {me && <PostForm />}
-      {mainPosts.map(post => (
-        <PostCard key={post.id} post={post} />
-      ))}
+      {me && mainPosts.map(post => <PostCard key={post.id} post={post} />)}
     </Layout>
   );
 };
