@@ -19,6 +19,7 @@ interface Props {
   post: PostState;
 }
 function PostCard({ post }: Props) {
+  console.log("post: ", post);
   const [liked, setLiked] = useState(false);
   const [commentFormOpened, setCommentFormOpened] = useState(false);
   const id = useSelector((state: RootState) => state.user.me);
