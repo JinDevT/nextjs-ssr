@@ -67,7 +67,7 @@ export const addCommentAction = data => {
 
 const dummyPost = data => ({
   id: data.id,
-  content: data.content,
+  content: data,
   User: {
     id: 1,
     nickname: "Max",
