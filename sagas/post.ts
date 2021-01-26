@@ -18,7 +18,6 @@ function addCommentAPI(data) {
 }
 
 function* addPost(action) {
-  console.log("acrtion: ", action.data);
   try {
     yield delay(1000);
     yield put({
