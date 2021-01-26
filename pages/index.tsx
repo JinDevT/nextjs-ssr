@@ -18,7 +18,9 @@ const Home = () => {
   return (
     <Layout>
       {me && <PostForm />}
-      {me && mainPosts.map(post => <PostCard key={post.id} post={post} />)}
+      {mainPosts.map(post => (
+        <PostCard key={post.id} post={post} />
+      ))}
     </Layout>
   );
 };
