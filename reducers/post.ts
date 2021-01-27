@@ -58,6 +58,7 @@ export const addPostAction = data => {
   };
 };
 
+// data type 정의히자.
 export const addCommentAction = data => {
   return {
     type: ADD_COMMENT_REQUEST,
