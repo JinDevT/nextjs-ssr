@@ -12,7 +12,7 @@ interface Props {
 function CommentForm({ post }: Props) {
   const dispatch = useDispatch();
   const id = useSelector((state: RootState) => state.user.me);
-  const { addCommentDone } = useSelector((state: RootState) => state.post);
+  const { addCommentDone, addCommentLoading } = useSelector((state: RootState) => state.post);
   const [commentText, onChangeCommentText, setCommentText] = useInput("");
 
   useEffect(() => {
@@ -32,9 +32,10 @@ function CommentForm({ post }: Props) {
       <Form.Item style={{ position: "relative", margin: 0 }}>
         <Input.TextArea value={commentText} onChange={onChangeCommentText} rows={4} />
         <Button
-          style={{ position: "absolute", right: 0, bottom: -40 }}
+          style={{ position: "absolute", right: 0, bottom: -40, zIndex: 1 }}
           type="primary"
           htmlType="submit"
+          loading={addCommentLoading}
         >
           등록
         </Button>
