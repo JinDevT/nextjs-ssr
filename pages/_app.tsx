@@ -6,10 +6,14 @@ import "antd/dist/antd.css";
 import Head from "next/head";
 import withReduxSaga from "next-redux-saga";
 import wrapper from "../store/configureStore";
+import { useEffect } from "react";
 
 // App이 최상의 부모 component라고 생각하면됨.
 // 공통적으로 사용하는 것을 _app.tsx에 모아둔다.
 function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <Head>
