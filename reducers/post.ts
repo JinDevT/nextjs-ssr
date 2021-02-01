@@ -54,6 +54,7 @@ export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
 
 export const addPostAction = data => {
+  console.log("rude: ", data);
   return {
     type: ADD_POST_REQUEST,
     data,
@@ -69,7 +70,7 @@ export const addCommentAction = data => {
 };
 
 const dummyPost = data => ({
-  id: shortId.getnerate(),
+  id: data.id,
   content: data,
   User: {
     id: 1,
@@ -80,7 +81,7 @@ const dummyPost = data => ({
 });
 
 const dummyComment = data => ({
-  id: shortId.getnerate(),
+  id: data.id,
   content: data,
   User: {
     id: 1,
