@@ -1,5 +1,5 @@
-import shortId from "shortid";
-
+const shortid = require("shortid");
+console.log(shortid.generate());
 export const initialState = {
   mainPosts: [
     {
@@ -70,7 +70,7 @@ export const addCommentAction = data => {
 };
 
 const dummyPost = data => ({
-  id: data.id,
+  id: shortid.generate(),
   content: data,
   User: {
     id: 1,
@@ -81,7 +81,7 @@ const dummyPost = data => ({
 });
 
 const dummyComment = data => ({
-  id: data.id,
+  id: shortid.generate(),
   content: data,
   User: {
     id: 1,
