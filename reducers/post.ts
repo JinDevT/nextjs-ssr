@@ -1,5 +1,4 @@
 const shortid = require("shortid");
-console.log(shortid.generate());
 export const initialState = {
   mainPosts: [
     {
@@ -54,7 +53,6 @@ export const ADD_COMMENT_SUCCESS = "ADD_COMMENT_SUCCESS";
 export const ADD_COMMENT_FAILURE = "ADD_COMMENT_FAILURE";
 
 export const addPostAction = data => {
-  console.log("rude: ", data);
   return {
     type: ADD_POST_REQUEST,
     data,
