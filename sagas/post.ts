@@ -23,12 +23,10 @@ function* addPost(action) {
     yield put({
       type: ADD_POST_SUCCESS,
       data: action.data,
-      // 성공 결과
     });
   } catch (err) {
     yield put({
       type: ADD_POST_FAILURE,
-      // 실패 결과
       error: err.response.data,
     });
   }
@@ -40,12 +38,10 @@ function* addComment(action) {
     yield put({
       type: ADD_COMMENT_SUCCESS,
       data: action.data,
-      // 성공 결과
     });
   } catch (err) {
     yield put({
       type: ADD_COMMENT_FAILURE,
-      // 실패 결과
       error: err.response.data,
     });
   }
