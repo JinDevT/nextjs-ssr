@@ -22,7 +22,7 @@ function logoutAPI() {
 
 function* login(action) {
   try {
-    yield delay(1000);
+    yield delay(2000);
     yield put({
       type: LOG_IN_SUCCESS,
       data: action.data,
@@ -39,7 +39,7 @@ function* login(action) {
 
 function* logout(action) {
   try {
-    yield delay(1000);
+    yield delay(2000);
     yield put({
       type: LOG_OUT_SUCCESS,
       // 성공 결과
